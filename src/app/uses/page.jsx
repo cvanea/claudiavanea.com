@@ -25,85 +25,82 @@ function Tool({ title, href, children }) {
 
 export const metadata = {
   title: 'Uses',
-  description: 'Software I use, gadgets I love, and other things I recommend.',
+  description: 'Software I love.',
 }
 
 export default function Uses() {
   return (
     <SimpleLayout
-      title="Software I use, gadgets I love, and other things I recommend."
-      intro="I get asked a lot about the things I use to build software, stay productive, or buy to fool myself into thinking I’m being productive when I’m really just procrastinating. Here’s a big list of all of my favorite stuff."
+      title="Software I love."
+      intro="I was originally going to remove this section but on reflection it's quite nice to share the things that help me be me. My favourite software that I would recommend:"
     >
       <div className="space-y-20">
-        <ToolsSection title="Workstation">
-          <Tool title="16” MacBook Pro, M1 Max, 64GB RAM (2021)">
-            I was using an Intel-based 16” MacBook Pro prior to this and the
-            difference is night and day. I’ve never heard the fans turn on a
-            single time, even under the incredibly heavy loads I put it through
-            with our various launch simulations.
-          </Tool>
-          <Tool title="Apple Pro Display XDR (Standard Glass)">
-            The only display on the market if you want something HiDPI and
-            bigger than 27”. When you’re working at planetary scale, every pixel
-            you can get counts.
-          </Tool>
-          <Tool title="IBM Model M SSK Industrial Keyboard">
-            They don’t make keyboards the way they used to. I buy these any time
-            I see them go up for sale and keep them in storage in case I need
-            parts or need to retire my main.
-          </Tool>
-          <Tool title="Apple Magic Trackpad">
-            Something about all the gestures makes me feel like a wizard with
-            special powers. I really like feeling like a wizard with special
-            powers.
-          </Tool>
-          <Tool title="Herman Miller Aeron Chair">
-            If I’m going to slouch in the worst ergonomic position imaginable
-            all day, I might as well do it in an expensive chair.
-          </Tool>
-        </ToolsSection>
         <ToolsSection title="Development tools">
-          <Tool title="Sublime Text 4">
-            I don’t care if it’s missing all of the fancy IDE features everyone
-            else relies on, Sublime Text is still the best text editor ever
-            made.
+          <Tool title="VSCode (with Cursor)">
+            A PyCharm girl for many years I have recently switched to Cursor. 
+            Got to see what all this AI hype is about.
           </Tool>
           <Tool title="iTerm2">
-            I’m honestly not even sure what features I get with this that aren’t
-            just part of the macOS Terminal but it’s what I use.
+            I've just used it for too long. May try out Ghostty soon.
           </Tool>
-          <Tool title="TablePlus">
-            Great software for working with databases. Has saved me from
-            building about a thousand admin interfaces for my various projects
-            over the years.
+          <Tool title="QuPath (special mention)">
+            If you are working with histology images (or frankly any pyramidal 
+            image type) then QuPath is unmatched, free software for image inspection
+            and analysis. 
           </Tool>
         </ToolsSection>
         <ToolsSection title="Design">
-          <Tool title="Figma">
-            We started using Figma as just a design tool but now it’s become our
-            virtual whiteboard for the entire company. Never would have expected
-            the collaboration features to be the real hook.
+          <Tool title="Adobe Illustrator">
+            I tried free alternatives like Inkscape but nothing beat Illustrator, 
+            which is a shame because I don't like recommending Adobe! 
+            The freedom and expressivity for scientific figure creation was key
+            to explaining biological concepts and the results across them. People 
+            are just biased by prettier and more professional looking things.
           </Tool>
         </ToolsSection>
         <ToolsSection title="Productivity">
-          <Tool title="Alfred">
-            It’s not the newest kid on the block but it’s still the fastest. The
-            Sublime Text of the application launcher world.
+          <Tool title="Raycast">
+            Is there anything it can't do? Replaced Alfred (and a bunch of other 
+            programs like magnet for me). Strongly recommend. 
           </Tool>
-          <Tool title="Reflect">
-            Using a daily notes system instead of trying to keep things
-            organized by topics has been super powerful for me. And with
-            Reflect, it’s still easy for me to keep all of that stuff
-            discoverable by topic even though all of my writing happens in the
-            daily note.
+          <Tool title="Things3">
+            Things3 changed my life. I'm not exaggerating. It was the digital 
+            alternative to a physical bullet journal that I'd been looking for. 
+            Low friction enough to keep using, powerful enough to be useful.
+            I wrote my thesis in under 2 months thanks to Things3 (post about this 
+            coming soon!)
           </Tool>
-          <Tool title="SavvyCal">
-            Great tool for scheduling meetings while protecting my calendar and
-            making sure I still have lots of time for deep work during the week.
+          <Tool title="Notion">
+            Who hasn't used Notion at this point? My PhD project lived in Notion 
+            and good recording and writing habits made writing the thesis 
+            (and collaborating and passing the torch) a lot easier. I recently discovered 
+            that I don't like it for ad hoc note taking. 
           </Tool>
-          <Tool title="Focus">
-            Simple tool for blocking distracting websites when I need to just do
-            the work and get some momentum going.
+          <Tool title="Obsidian">
+            {/* TODO */}
+            That's where Obsidian comes in. I have thousands of Apple Notes that I 
+            haven't explored to the fullest or that are lost in between shopping lists. 
+            Obsidian has been a great way to reflect and combine related thoughts.
+            I am new to this but I've been loving it so far. Most of my blog posts
+            will start as Obsidian notes it seems! Also, graphs are pretty.
+          </Tool>
+        </ToolsSection>
+        <ToolsSection title="Life">
+          <Tool title="Daylio">
+            I'd tried a few journalling tools and couldn't get one to stick.
+            Turns out I don't need to record everything that happens to still
+            get actionable insights I care about. Recording everything is a chore. 
+            That's why Daylio is the perfect supplement to Obsidian. Fun and easy way to track the trends
+            I care about while Obsidian takes care of interesting reflections.
+            Looking forward to getting more data to analyse from this. My favourite 
+            trend so far is that soreness correlates with better mood for that day
+            and the day after. 💪
+          </Tool>
+          <Tool title="Headspace">
+            It took me far too long to get into meditation. I simply wasn't open
+            to it. I loved my chattering inner voice. But that voice isn't always
+            helpful and that voice isn't all you are. Once I realised this 
+            meditation became a powerful tool for steadying and readying the mind.
           </Tool>
         </ToolsSection>
       </div>
