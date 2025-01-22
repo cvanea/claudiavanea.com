@@ -32,7 +32,7 @@ export default function Uses() {
   return (
     <SimpleLayout
       title="Software I love."
-      intro="I was originally going to remove this section but on reflection it's quite nice to share the things that help me be me. My favourite software that I would recommend:"
+      intro="I was originally going to remove this section but on reflection it’s quite nice to share the things that help me be me. My favourite software that I would recommend:"
     >
       <div className="space-y-20">
         <ToolsSection title="Development tools">
@@ -41,7 +41,7 @@ export default function Uses() {
             Got to see what all this AI hype is about.
           </Tool>
           <Tool title="iTerm2">
-            I've just used it for too long. May try out Ghostty soon.
+            I’ve just used it for too long. May try out Ghostty soon.
           </Tool>
           <Tool title="QuPath (special mention)">
             If you are working with histology images (or frankly any pyramidal 
@@ -52,7 +52,7 @@ export default function Uses() {
         <ToolsSection title="Design">
           <Tool title="Adobe Illustrator">
             I tried free alternatives like Inkscape but nothing beat Illustrator, 
-            which is a shame because I don't like recommending Adobe! 
+            which is a shame because I don’t like recommending Adobe! 
             The freedom and expressivity for scientific figure creation was key
             to explaining biological concepts and the results across them. People 
             are just biased by prettier and more professional looking things.
@@ -60,46 +60,46 @@ export default function Uses() {
         </ToolsSection>
         <ToolsSection title="Productivity">
           <Tool title="Raycast">
-            Is there anything it can't do? Replaced Alfred (and a bunch of other 
+            Is there anything it can’t do? Replaced Alfred (and a bunch of other 
             programs like magnet for me). Strongly recommend. 
           </Tool>
           <Tool title="Things3">
-            Things3 changed my life. I'm not exaggerating. It was the digital 
-            alternative to a physical bullet journal that I'd been looking for. 
+            Things3 changed my life. I’m not exaggerating. It was the digital 
+            alternative to a physical bullet journal that I’d been looking for. 
             Low friction enough to keep using, powerful enough to be useful.
             I wrote my thesis in under 2 months thanks to Things3 (post about this 
             coming soon!)
           </Tool>
           <Tool title="Notion">
-            Who hasn't used Notion at this point? My PhD project lived in Notion 
+            Who hasn’t used Notion at this point? My PhD project lived in Notion 
             and good recording and writing habits made writing the thesis 
             (and collaborating and passing the torch) a lot easier. I recently discovered 
-            that I don't like it for ad hoc note taking. 
+            that I don’t like it for ad hoc note taking. 
           </Tool>
           <Tool title="Obsidian">
             {/* TODO */}
-            That's where Obsidian comes in. I have thousands of Apple Notes that I 
-            haven't explored to the fullest or that are lost in between shopping lists. 
+            That’s where Obsidian comes in. I have thousands of Apple Notes that I 
+            haven’t explored to the fullest or that are lost in between shopping lists. 
             Obsidian has been a great way to reflect and combine related thoughts.
-            I am new to this but I've been loving it so far. Most of my blog posts
+            I am new to this but I’ve been loving it so far. Most of my blog posts
             will start as Obsidian notes it seems! Also, graphs are pretty.
           </Tool>
         </ToolsSection>
         <ToolsSection title="Life">
           <Tool title="Daylio">
-            I'd tried a few journalling tools and couldn't get one to stick.
-            Turns out I don't need to record everything that happens to still
+            I’d tried a few journalling tools and couldn’t get one to stick.
+            Turns out I don’t need to record everything that happens to still
             get actionable insights I care about. Recording everything is a chore. 
-            That's why Daylio is the perfect supplement to Obsidian. Fun and easy way to track the trends
+            That’s why Daylio is the perfect supplement to Obsidian. Fun and easy way to track the trends
             I care about while Obsidian takes care of interesting reflections.
             Looking forward to getting more data to analyse from this. My favourite 
             trend so far is that soreness correlates with better mood for that day
             and the day after. 💪
           </Tool>
           <Tool title="Headspace">
-            It took me far too long to get into meditation. I simply wasn't open
-            to it. I loved my chattering inner voice. But that voice isn't always
-            helpful and that voice isn't all you are. Once I realised this 
+            It took me far too long to get into meditation. I simply wasn’t open
+            to it. I loved my chattering inner voice. But that voice isn’t always
+            helpful and that voice isn’t all you are. Once I realised this 
             meditation became a powerful tool for steadying and readying the mind.
           </Tool>
         </ToolsSection>
