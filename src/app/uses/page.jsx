@@ -87,10 +87,10 @@ export default function Uses() {
         </ToolsSection>
         <ToolsSection title="Life">
           <Tool title="Daylio">
-            I’d tried a few journalling tools and couldn’t get one to stick.
-            Turns out I don’t need to record everything that happens to still
+            I’ve tried a few journalling tools and couldn’t get one to stick.
+            Turns out I don’t need to record everything to still
             get actionable insights I care about. Recording everything is a chore. 
-            That’s why Daylio is the perfect supplement to Obsidian. Fun and easy way to track the trends
+            That’s why Daylio is the perfect supplement to Obsidian. A fun and easy way to track the trends
             I care about while Obsidian takes care of interesting reflections.
             Looking forward to getting more data to analyse from this. My favourite 
             trend so far is that soreness correlates with better mood for that day

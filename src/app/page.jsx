@@ -215,10 +215,10 @@ function Resume() {
           <Role key={roleIndex} role={role} />
         ))}
       </ol>
-      <Button href="#" variant="secondary" className="group mt-6 w-full">
+      {/* <Button href="#" variant="secondary" className="group mt-6 w-full">
         Download CV
         <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
-      </Button>
+      </Button> */}
     </div>
   )
 }
@@ -262,8 +262,8 @@ export default async function Home() {
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
             Hi! I’m Claudia, an AI researcher based in New York City. 
-            I have recently completed a PhD at Oxford in AI for Health
-            and I am curently exploring what’s next at SPC.
+            I recently completed a PhD at Oxford in AI for Health
+            and I am curently exploring what’s next at South Park Commons.
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink href="https://x.com/claudiavanea" aria-label="Follow on X" icon={XIcon} />
@@ -280,7 +280,7 @@ export default async function Home() {
           </div>
         </div>
       </Container>
-      <Photos />
+      {/* <Photos /> */}
       <Container className="mt-24 md:mt-28">
         <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
           <div className="flex flex-col gap-16">
@@ -289,7 +289,7 @@ export default async function Home() {
             ))}
           </div>
           <div className="space-y-10 lg:pl-16 xl:pl-24">
-            <Newsletter />
+            {/* <Newsletter /> */}
             <Resume />
           </div>
         </div>

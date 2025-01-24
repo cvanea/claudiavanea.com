@@ -15,14 +15,43 @@ export const metadata = {
 
 export default (props) => <ArticleLayout article={article} {...props} />
 
-We all know that AI cheats. You give it an objective function and it finds the stupidest and sometimes funniest way to solve it. If the objective is to avoid touching the floor in some simulated physics, then it will learn to break the simulation and jump extremely high (read: forever) or float. You penalise an LLM for being too verbose? Okay, "rest of the code goes here". Overly simple objectives lead to as-fast-as-possible solutions and bypass the true objective. In part because the true objective is much harder to quantify and thereby encode into a differentiable objective function.
+We all know that AI cheats. You give it an objective function and it finds the stupidest and sometimes funniest way to solve it. 
+If the objective is to avoid touching the floor in some simulated physics, then it will learn to break the simulation and jump 
+extremely high (read: forever) or float. You penalise an LLM for being too verbose? Okay, "rest of the code goes here". Overly 
+simple objectives lead to as-fast-as-possible solutions and bypass the true objective. In part because the true objective is much 
+harder to quantify and thereby encode into a differentiable objective function.
 
-Chollet makes this point very well in his 2019 64 page report on AI reasoning: [On the measure of intelligence](https://arxiv.org/abs/1911.01547). We once thought that building a chess playing AI would solve human-level reasoning because we require all of these different reasoning capabilities to play chess well. Turns out, *an AI* doesn't require these reasoning capabilities and solved chess as simply as possible. All we got was a chess playing machine and not much more than that. Likewise, Chollet makes this same point about OpenAI's DoTA2 AI team, where we had models able to perform above human level in an environment of imperfect information. And yet, that's all we got. I suspect he would make this same point about the LLMs of today.
+Chollet makes this point very well in his 2019 64 page report on AI reasoning[^1]: [On the measure of intelligence](https://arxiv.org/abs/1911.01547). 
+We once thought that building a chess playing AI would solve human-level reasoning because we require all of these different 
+reasoning capabilities to play chess well. Turns out, *an AI* doesn't require these reasoning capabilities and solves chess as simply as 
+possible. All we got was a chess playing machine and not much more than that. Likewise, Chollet makes this same point about OpenAI's DoTA2 
+AI team, where we had models able to perform above human level in an environment of imperfect information. And yet, that's all we got. 
+I suspect he would make this same point about the LLMs of today, as powerful as they are.
 
-Interestingly, humans do this too. We love to cheat when we are given overly simple incentives. It's a known thing that poorly defined incentives lead to poorly proposed 'solutions'. When the UK government wanted to cut down on doctors' wait times, they added an incentive to reward practices without long queues. What happened? Practices abolished their queue systems and you had to perfectly call them at opening hour and hope you could book an appointment for that day. Problem solved, can't have a wait time without a queue to wait in! Not the efficient solution that the government wanted.
+Interestingly, humans do this too. We love to cheat when we are given overly simple incentives. It's a known thing that poorly 
+defined incentives lead to poorly proposed 'solutions'. In the 2000s, When the UK government wanted to cut down on doctors' wait times, they 
+added an incentive to reward practices without long queues. What happened? Practices fixed their queue systems and you had to 
+perfectly call them at opening hour and hope you could book an appointment for that day. Problem solved, can't have a wait time 
+without a queue to wait in! Not the efficient solution that the government wanted.[^2]
 
-We are so similar to AI sometimes. So why do we use complex reasoning when learning to play chess? Simply because our raw compute capabilities are limited? Doesn't this beg the question that we precisely *should* be trying to build models that can perform in low compute environments. Not to save money but to force the models to be smarter. This is in contrast to a long-held consensus in deep learning, coincidentally also from 2019, based on Sutton's [Bitter Lesson](http://www.incompleteideas.net/IncIdeas/BitterLesson.html). He argues that we should be optimising for models and methods that scale with compute rather than forcing in human knowledge. Past (and now future) AI progress has only supported his point. 
+We are so similar to AI sometimes. So why do we use complex reasoning when learning to play chess? Simply because our raw compute 
+capabilities are limited?[^3] Doesn't this beg the question that we precisely *should* be trying to build models that can perform in 
+low compute environments. Not to save money but to force the models to be smarter. This is in contrast to a long-held consensus in 
+deep learning, coincidentally also from 2019, based on Sutton's [Bitter Lesson](http://www.incompleteideas.net/IncIdeas/BitterLesson.html). 
+He argues that we should be optimising for models and methods that scale with compute rather than forcing in human knowledge.[^4] 
+Past (and now future) AI progress has only supported his point. 
 
-Whilst I do not think that we should be forcing in human-style knowledge like the methods of old, I maintain that we want models for which human-style reasoning is the simplest solution. I, for one, am still fond of the biologically-inspired models. We are an incredible example of one after all.
+Whilst I do not think that we should be forcing in human-style knowledge like the methods of old, I maintain that we want models for 
+which human-style reasoning is the simplest solution. I, for one, am still fond of finding biologically-inspired models. We are an incredible 
+example of one after all.
 
-(In fairness to Sutton, he argues for models "that can discover like we can, not which contain what we have discovered." so I'd say we're all in agreement!)
+[^1]: Which introduced the now topical arc-agi benchmark.
+
+[^2]: https://www.health.org.uk/features-and-opinion/blogs/gp-waiting-times-learning-from-the-past 
+
+[^3]: I want to point out that things are certainly more complex than this for the evolution of human reasoning. 
+We didn't evolve as chess solving automata, there were a myriad of 'objective functions' to optimise over eventually leading 
+to the reasoning we talk about today. 
+
+[^4]: In fairness to Sutton, he argues for models "that can discover like we can, not which contain what we have discovered." so I'd say 
+we're all in agreement!
