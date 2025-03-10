@@ -61,7 +61,7 @@ export default function About() {
           </h1>
           <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
             <p>
-              I'm an AI  researcher based in New York City. 
+              I’m an AI  researcher based in New York City. 
               I recently completed a PhD at Oxford in AI for Health and I
                am curently exploring what’s next at South Park Commons, where I co-lead the AI Reasoning forum.
             </p>
@@ -86,7 +86,7 @@ export default function About() {
             <p>
             Outside of work, I love birds, bouldering and video games (particularly Soulslikes!).
             I used to grow chilies in the UK and am currently trying to figure out my NYC setup.
-            My first love was Philosophy so I'm always up for a good debate.
+            My first love was Philosophy so I’m always up for a good debate.
 
             </p>
           </div>
