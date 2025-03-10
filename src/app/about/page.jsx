@@ -5,7 +5,6 @@ import clsx from 'clsx'
 import { Container } from '@/components/Container'
 import {
   GitHubIcon,
-  InstagramIcon,
   LinkedInIcon,
   XIcon,
 } from '@/components/SocialIcons'
@@ -39,7 +38,7 @@ function MailIcon(props) {
 export const metadata = {
   title: 'About',
   description:
-    'I’m Claudia Vanea. Philosopher come AI scientist and Brit come New Yorker.',
+    'I’m Claudia Vanea.',
 }
 
 export default function About() {
@@ -58,20 +57,37 @@ export default function About() {
         </div>
         <div className="lg:order-first lg:row-span-2">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
-          Hi! I’m Claudia Vanea. Philosopher come AI Scientist and Brit come New Yorker.
+          Hi! I’m Claudia Vanea.
           </h1>
           <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
             <p>
-              .
+              I'm an AI  researcher based in New York City. 
+              I recently completed a PhD at Oxford in AI for Health and I
+               am curently exploring what’s next at South Park Commons, where I co-lead the AI Reasoning forum.
             </p>
             <p>
-              .
+            On my PhD, I built a multi-stage deep learning pipeline for hierarchically 
+            modeling biological structure across terabytes of placenta histology images. 
+            The pipeline combined object detection and image classification models (computer vision) 
+            with graph neural networks to comprehensively phenotype the placenta in healthy and 
+            diseased states. In my last few months, I built a proof-of-concept graph compression 
+            autoencoder to localise and summarise placental lesions. 
             </p>
             <p>
-              .
+            I published at top conferences and journals (NeurIPS and Nature Communications) and 
+            supervised 6 interns across the degree. I was student representative and based on 
+            student feedback, I proposed, designed and taught the PhD-level module applying software
+            engineering practices to research code. I taught this module across three years of my PhD.
             </p>
             <p>
-              .
+            Prior to my PhD, I obtained a Bachelors in Philosophy and a Masters in Computer Science from UCL, 
+            graduating with the highest honours.
+            </p>
+            <p>
+            Outside of work, I love birds, bouldering and video games (particularly Soulslikes!).
+            I used to grow chilies in the UK and am currently trying to figure out my NYC setup.
+            My first love was Philosophy so I'm always up for a good debate.
+
             </p>
           </div>
         </div>
