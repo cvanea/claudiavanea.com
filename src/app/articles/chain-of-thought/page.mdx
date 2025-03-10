@@ -1,0 +1,44 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+
+export const article = {
+  author: 'Claudia Vanea',
+  date: '2024-02-25',
+  title: 'Chain of Thought is not magic',
+  description:
+    'Chain of Thought is just structured prompting, it’s not as complex as it seems.',
+}
+
+export const metadata = {
+  title: article.title,
+  description: article.description,
+}
+
+export default (props) => <ArticleLayout article={article} {...props} />
+
+Chain of thought (CoT) is not magic but so many people think it is. Let me demystify that.
+
+CoT is just prompt engineering.
+
+From the model's perspective, CoT outputs are no different to answer outputs. In fact, the first papers discovering CoT in 2022 basically just asked the model to think harder and for longer. We then somewhat arbitrarily named certain bits 'thought' and other bits the answer. A personal favourite of mine was a paper showing that simply adding "let's think step by step" to the prompt improved performance from 17.7% to 78.7% on the math benchmark MultiArith [^1].
+
+So why does it work so well? 
+
+The analogy to humans 'thinking out loud' or 'writing out your working' in math is apt here. In doing so you might notice a glaring mistake which overrides your previous fast-thinking answer. Similarly, there's the concept of 'rubberducking' which is when the very act of explaining something to someone (or a rubber duck!) gives you the answer even if that person gave you no input. CoT is that.
+
+If we look a little deeper into the attention mechanism, then CoT makes even more sense. To predict the next word in a sequence, LLMs look at every previous word in the context and assess its relevance to the output. By generating more tokens as part of 'thinking' the model is repeatedly checking the next output against all previous tokens. So more CoT tokens means more passes over the previous text and more opportunities to reiterate the most relevant bits, which it can then refer to again for the next output. As with writing down working, sometimes this can show a glaring mistake which will override the previous semantic trend in generated tokens. 
+
+If you manually told the model what its thinking process should be by replacing the generated CoT with a prompt, then the model passes over those 'thinking' tokens far fewer times. It does not have to explore all the previously relevant tokens for each bit of its thinking. The very act of generating extra tokens makes the output better. 
+
+However, CoT isn't perfect. 
+
+When we tell a model to think for longer, how does the model know when it's ready to answer? Early on, we had to encourage models to output tokens like "therefore" which would trigger it to provide the final answer. This is still an issue today. DeepSeek R1’s CoT often loops over the same thoughts, like it’s anxiously second-guessing itself [^2]. We then forcibly inject a stop-thinking token and it gives us the answer. 
+
+Similarly, it is not easy to confirm that models are actually using their CoT tokens in their final answer, apart from that the answer is often better with CoT. Sometimes the answer has nothing to do with CoT! This is referred to as CoT unfaithfulness and the degree to which it happens is still unclear and an active area of research [^3].
+
+CoT isn't magic—it's just structured prompting that plays to the strengths of LLMs.
+
+[^1]: https://arxiv.org/pdf/2205.11916 
+
+[^2]: https://snakebench.com/match/b959b595-8b4f-47a0-99fa-99ab8cfe9a9f imagine if we overthought this hard on the first move of Snake!
+
+[^3]: https://www.anthropic.com/news/measuring-faithfulness-in-chain-of-thought-reasoning and https://arxiv.org/abs/2311.07466
