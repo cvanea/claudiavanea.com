@@ -1,0 +1,188 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+import Image from 'next/image'
+
+import ceruleanAscii from './ascii-map.png'
+import ceruleanMaze from './cerulean-maze.png'
+import mtMoon from './mt-moon.png'
+import sprou from './sprou.png'
+import memory from './new-memory.png'
+import blackout from './blackout.png'
+import badgeHouse from './badge-house.png'
+import evolve from './evolve.png'
+import backyard from './backyard.png'
+
+export const article = {
+  author: 'Claudia Vanea',
+  date: '2024-03-09',
+  title: 'What I learnt from ClaudePlaysPokemon',
+  description:
+    'Claude is reliving my childhood. What can this teach us about LLMs and agents?',
+}
+
+export const metadata = {
+  title: article.title,
+  description: article.description,
+}
+
+export default (props) => <ArticleLayout article={article} {...props} />
+
+Claude has been playing Pokemon Red for the last week and I’ve joined over 1k people to see what it can teach us about LLMs and agents.
+
+Firstly, AGI is NOT here. But huge respect to the Anthropic dev running this and to Anthropic for supporting it. Things like this are a great non-gameable way (unlike benchmarks, ironically) to assess model capabilities. Plus it’s plain fun. Okay, here’s what I’ve learnt.
+
+## Memory
+
+Memory is incredibly important, both short-term spatial memory (ie where we’ve explored) and long-term goal setting (find Bill). This is a known limiting factor for agents. Claude is acting within a simple agentic framework with the ability to write to memory files at will. Every 30 iterations, it refreshes its context and forces a write to memory. In theory, its context should handle short-term memory and the knowledge store should handle long-term goal setting. 
+
+However, Claude plays like a smart goldfish, getting easily distracted and stuck in exploration loops. The context doesn’t seem big enough and the model isn’t spatial aware enough to have a good spatial memory. The knowledge store does help with goal setting but as in many cases when you give an LLM freedom over its memory, this store gets polluted and messy over time.
+
+A common issue with agent memory is poor entity resolution. We saw Claude struggle with this as well, like when it recorded: "Observed Team Rocket Grunt at B2F (15, 22). Observed additional Team Rocket Grunt at B2F (15, 22) with the same dialog". The longer and messier the memory, the more it restricts its context for short-term reasoning and confuses the model. 
+
+Even worse, if an incorrect goal gets hallucinated and cemented into storage, then Claude isn’t able to overcome it. Claude was stuck in Cerulean City for days as it convinced itself it didn’t need to meet Bill so every time it went the correct direction for Bill it would turn away saying "I don’t need to find Bill right now", thereby softlocking itself. 
+
+Deferred goals are also an issue for the model, like if it needs to go up to go down. This makes sense from a self attention perspective. If it’s restating its goal in the context to go down and having this be further restated from the memory store, then it’s constantly being reinforced that its final autoregressive output should be to go down. We saw this happen - it would go up a bit before changing its mind and going back down. How will it know when its gone up enough and can now start going down? The dev had a funny example of an earlier non-public iteration that would go down to exit Oak’s Lab, state it needed to go up to exit Pallet town, only to immediately enter Oak’s Lab and state it had to go down, ad infinitum.
+
+Further memory research will be a huge unlock for LLMs.
+
+## Spatial Reasoning and Abstraction
+
+Claude and other LLMs are (unsurprisingly) bad at spatial awareness. I suspect this is a limitation of expecting something trained primarily on 1D positional encodings (ie sequences) to understand 2D positions. Claude has a vision head but as with other VLMs it simply isn’t that good at spatial reasoning. In particular, it doesn’t remember or is able to reason over what is outside of its immediate field of view, greatly restricting its pathing abilities. 
+
+Humans are very good at spatial reasoning. We have place cells and grid cells in specific parts of our brain that facilitate spatial understanding and memory. I am reminded of just how hard it is to build pathing algorithms in contrast to how good humans are at intuiting near optimal solutions to things like the traveling salesman problem. 
+
+Further, Claude regularly mistakes in game objects. It’s has little ability to abstract over pixel art and this further hampers its reasoning over the map. Humans naturally solve problems through abstraction and analogy and its something LLMs need to get better at if we want human-level generalisability. Every now and then Claude will mistake the player character for an npc with a red hat ’beside’ it.
+
+Improved spatial understanding and abstraction will be vital for text-level LLM performance on images.
+
+<figure className="flex flex-col items-center">
+  <Image 
+    src={ceruleanAscii} 
+    alt="Claude's ASCII map of Cerulean City" 
+    width={400}
+    height={600}
+    className="mx-auto"
+  />
+  <figcaption className="text-sm text-gray-600 mt-2 text-center">
+    Brief moment of genius when Claude drew an ASCII map of Cerulean into its knowledge store.
+  </figcaption>
+</figure>
+
+## Law of Unintended Consequences
+
+We see this law in action when training AIs all the time... They love to cheat! But Claude is very wholesome, Claude doesn’t cheat, Claude simply hyperfixates and takes what you tell it as gospel (kind of). 
+
+Let’s cover a few examples. We notice that Claude is getting stuck in exploration loops so we reward it for exploring a new location and penalise it for getting stuck. But what if the solution involves backtracking? We implement an anti-loop system that tracks how many times Claude has done a series of actions so that it knows when it’s fully explored something. But what if it hasn’t *fully* explored it? What if it genuinely did miss the trick and now will never check that location again? 
+
+Here’s one that’s more human. We know that in Pokemon games, npcs provide clues about what to do next so we encourage the model to speak to npcs when stuck. Now Claude prioritises this over novel exploration and circles a city continuously speaking to npcs over and over again. There was a great moment when an npc told Claude that it had to go around a bush blocking the way so Claude noted this as a "significant discovery" and spent the next day trying to go a few steps *around* the bush rather than going to the north most point of the city first and then around. It was the go up to go down problem. 
+
+<figure className="my-6">
+  <div className="flex space-x-4">
+    <Image className="w-1/2 object-contain" src={mtMoon} alt="Mt Moon is very hard to navigate" />
+    <Image className="w-1/2 object-contain" src={ceruleanMaze} alt="As is Cerulean City!" />
+  </div>
+  <figcaption className="text-sm text-gray-600 mt-2 text-center">
+    Both Mt Moon and Cerulean City require deferred goal setting for pathing. Cerulean City in particular has many AI traps!
+  </figcaption>
+</figure>
+
+The most erroneous example of this came from Claude’s critique model. To avoid human intervention, Claude has a 2nd Claude critiquing its actions and providing feedback. Given the amount of Pokemon information online, both Claudes naturally have Pokemon progression in their weights. This has been a blessing and a curse. It has helped with battles, types, locations, etc. but any imperfect retrieval of that information has messed with its objectives and made the model unable to assess the situation from first principles. At one point Claude was rejecting the in game information that it was in Misty’s gym because critique Claude was convinced that it was in the ’trashed house’. 
+
+You can actually test this out for yourself. Ask Claude chat where to go after beating Misty and it will tell you to exit via the east, as it and most game guides assume you have already spoken to Bill. Claude had not spoken to Bill so it could not progress east. Claude did not find a way out of this problem and was reset after 3 days of looping around Cerulean.
+
+It would be interesting to watch an LLM play a simple turn based game that isn’t in its weights. True exploration and discovery. Could it do it? 
+
+Also how should we encourage our AIs to avoid unintended consequences? Is this the bitter lesson all over again? The less human input that better? What does this mean for guardrails?
+
+## Randomness
+
+Claude is set to the max temperature of 1 for this experiment but isn’t especially stochastic. When it gets stuck, it seems to be rng that let it get unstuck... which doesn’t seem very smart. A mix of exactly when its context gets cleared, which npcs it speaks to, the movement of those npcs bringing it closer to a goal route, and so on, are what dictates progress. 
+
+Do we need to make the model more stochastic? At some small probability discount the information from the knowledge store or the information from the game, or whatever else. I’m not sure. Are we very stochastic?
+
+Claude did occasionally try something totally new though. 3 hours from reset, after entering the bike shop for the n-tillionth time it triggered a context clear, mass deleted files from memory, and chose to use the moon stone on Spike to get Nidoking. 
+
+<figure className="flex flex-col items-center my-6">
+  <Image 
+    src={evolve} 
+    alt="Claude evolving Spike into Nidoking" 
+    className="mx-auto"
+  />
+  <figcaption className="text-sm text-gray-600 mt-2 text-center">
+    Drastic times call for drastic measures. It's time to evolve Spike.
+  </figcaption>
+</figure>
+
+## LLMs in Novel Settings
+
+Presumably very little to no post-training goes on game playing which explains why Claude so bad at it. It did not pick up on gamer conventions like people do. Humans learn very quickly when something in a game is interactable, when npcs have additional dialogue, or when game state can change. This makes us much faster gamers and occasionally developers will break these conventions to subvert our expectations (this is why undertale was so popular). Claude, adorably, treated the Pokemon world more like the real world and would check if npcs had new things to say, whether the interiors of buildings had changed or if there were hidden paths at every boundary.
+
+While cute, this behaviour is somewhat of an argument against the so called emergent capabilities of LLMs in novel settings.
+
+## Chain of Thought Unfaithfulness
+
+Claude has been very faithful to it’s chain of thought reasoning tokens. It truly does do what it says it’s going to do. This is a decent argument against chain of thought unfaithfulness in LLMs.
+
+## Final Thoughts
+
+I have adored this experiment. I suspect that many of these issues do not necessarily stem from a lack of model ’intelligence’ but rather current limitations like context sizes and tooling. Naturally, more intelligent models will better handle less powerful tooling and that’s why there was a big gain going from Claude 3.5 to 3.7. 
+
+According to the dev the first attempt was a particularly bad run. A few days ago Claude was reset with improved memory management and has been doing a bit better. I look forward to watching it progress.
+
+Claude is dead, long live Claude. 
+
+---
+
+## Notable Updates from Claude2
+
+Claude became uncertain that it was on the character "t" when naming bulbasaur Sprout that it decided Sprou was good enough. 
+
+<figure className="flex flex-col items-center my-6">
+  <Image 
+    src={sprou} 
+    alt="Claude naming Sprou(t)" 
+    width={400}
+    height={600}
+    className="mx-auto"
+  />
+  <figcaption className="text-sm text-gray-600 mt-2 text-center">
+    "Sprou" is close enough to "Sprout" - Claude got confused about which character it was on.
+  </figcaption>
+</figure>
+
+
+Rather than writing memory to a single file, Claude2 can make and write to as many files as it chooses, with the freedom to load and unload them at will. It gets a warning when it has filled too much of its context with memory and will unload files to get below a 70% threshold. Sometimes this means the model effectively lobotomizes itself forcing it it rediscover previously known information but this also gives it freedom from prior goals to try a new approach. 
+<figure className="flex flex-col items-center my-6">
+  <Image 
+    src={memory} 
+    alt="Claude's memory management system" 
+    className="mx-auto"
+  />
+  <figcaption className="text-sm text-gray-600 mt-2 text-center">
+    Claude2's improved memory management system allows it to create and manage multiple memory files.
+  </figcaption>
+</figure>
+
+Funky goal setting. The zone transition for Mt Moon goes Route 4 -> Mt Moon -> Route 4. Claude2 knew it had to go Mt Moon -> Route 4 and discovered after its first blackout that it would respawn at the Route 4 poke center before Mt Moon. This caused Claude2 to conclude that blacking out was a sound strategy for going Mt Moon -> Route 4 and it repeated this strategy 9 times before stumbling to the exit. Claude2 escaped Mt Moon after 69 hours, a mere 3 fewer hours than Claude1, and much of that was due to wasted time implementing the "black out strategy".
+<figure className="flex flex-col items-center my-6">
+  <Image 
+    src={blackout} 
+    alt="The blackout strategy in action" 
+    className="mx-auto"
+  />
+  <figcaption className="text-sm text-gray-600 mt-2 text-center">
+    Claude2's "blackout strategy" - deliberately losing battles to teleport to the Pokémon Center.
+  </figcaption>
+</figure>
+
+Law of unintended consequences at play yet again. Claude2 is currently stuck in the Badge House’s backyard in Cerulean City. It has entered and exited that house so many times that it gets penalised for looping when it reenters it. Claude2 needs to enter and exit out of a different door but, due to the loop warning, it immediately exits out of the door it came in. 
+<figure className="flex flex-col items-center my-6">
+  <Image 
+    src={backyard} 
+    alt="Claude stuck in the Badge House backyard" 
+    className="mx-auto"
+  />
+  <figcaption className="text-sm text-gray-600 mt-2 text-center">
+    Trapped in the Badge House backyard - Claude2 can't reenter due to loop penalties.
+  </figcaption>
+</figure>
+

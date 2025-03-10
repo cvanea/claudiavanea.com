@@ -33,7 +33,7 @@ export default function Speaking() {
   return (
     <SimpleLayout
       title="My research outputs."
-      intro="My first author publications from my PhD. Enjoy!"
+      intro="First author publications from my PhD. Enjoy!"
     >
       <div className="space-y-20">
       <SpeakingSection title="Journals">

@@ -44,7 +44,7 @@ export default async function ArticlesIndex() {
   return (
     <SimpleLayout
       title="Reflections on AI, philosophy, science, research, and more."
-      intro="My musings on the things that interest me. Debates are welcome."
+      intro="Musings on the things that interest me. Debates are welcome."
     >
       <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
         <div className="flex max-w-3xl flex-col space-y-16">

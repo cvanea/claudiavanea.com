@@ -32,13 +32,13 @@ export default function Uses() {
   return (
     <SimpleLayout
       title="Software I love."
-      intro="I was originally going to remove this section but on reflection it’s quite nice to share the things that help me be me. My favourite software that I would recommend:"
+      intro="My favourite software that I would recommend."
     >
       <div className="space-y-20">
         <ToolsSection title="Development tools">
-          <Tool title="VSCode (with Cursor)">
+          <Tool title="Cursor">
             A PyCharm girl for many years I have recently switched to Cursor. 
-            Got to see what all this AI hype is about.
+            Got to see what all this AI fuss is about.
           </Tool>
           <Tool title="iTerm2">
             I’ve just used it for too long. May try out Ghostty soon.
